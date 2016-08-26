@@ -9,10 +9,14 @@ var game = {
 
     readlineThing.question("What is your name? ", function(answer) {
       console.log("Hi there " + answer + ", welcome to the game!")
+      readlineThing.question("Choose your class: (Mage, Warrior, Thief)", function(answer) {
+      chooseClass(answer);
+      console.log(Player)
       readlineThing.close();
     })
+  })
   },
-  restart: function() {
+    restart: function() {
     game.start();
   }
 }
@@ -98,18 +102,6 @@ function chooseClass(answer) {
           console.log("Eat arrow")
           finalBoss.health = finalBoss.health - 5
         }
-      } else if (Player.class == "Giant") {
-          Player.skill["1"] = function() {
-            console.log("Stomp")
-            finalBoss.health = finalBoss.health - 4;
-          }
-          Player.skill["2"] = function() {
-            console.log("Crushing blow");
-            finalBoss.health = finalBoss.health - 10;
-          }
-          Player.skill["3"] = function() {
-            console.log("Sonic Clap")
-            finalBoss.health = finalBoss.health - 6
           }
         }
 

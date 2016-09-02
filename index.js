@@ -18,17 +18,27 @@ function initialize() {
   readlineThing.question("What is your name? ", function(answer) {
     Name(answer);
       console.log("Hi there " + answer + ", welcome to the game!")
-      readlineThing.question("Choose your class: (Mage, Warrior, Thief) ", function(answer) {
-      chooseClass(answer);
-        readlineThing.question("Choose your gender: (Male, Female) ", function(answer) {
-        chooseGender(answer);
-          readlineThing.question("Choose your race: (Dwarf, Human, Elf) ", function(answer) {
-          chooseRace(answer);
-          console.log(Player)
-          readlineThing.close();
-          })
-        })
-      })
+      askClass()
+  })
+}
+
+function askClass() {
+  readlineThing.question("Choose your class: (Mage, Warrior, Thief) ", function(answer) {
+  chooseClass(answer);
+  askGender()
+  })
+}
+
+function askGender() {
+  readlineThing.question("Choose your gender: (Male, Female) ", function(answer) {
+  chooseGender(answer);
+  askRace()
+  })
+}
+
+function askRace() {
+  readlineThing.question("Choose your race: (Dwarf, Human, Elf) ", function(answer) {
+  chooseRace(answer);
   })
 }
 
@@ -74,13 +84,23 @@ function Name(answer) {
 
 function chooseGender(answer) {
   Player.gender = answer;
-  if (Player.gender != "Male" || Player.gender != "Female") readlineThing.question("Please enter a valid class: ", function(answer) {
-      chooseGender(answer);
+  if (Player.gender != "Male" && Player.gender != "Female")
+    readlineThing.question("Please enter a valid gender: ", function(answer) {
+    chooseGender(answer);
+    askRace()
     })
 }
 
 function chooseRace(answer) {
   Player.race = answer;
+  if (Player.race != "Dwarf" && Player.race != "Human" && Player.race != "Elf'") {
+    readlineThing.question("Please enter a valid race: ", function(answer) {
+    chooseRace(answer);
+  })
+} else {
+    console.log(Player)
+    readlineThing.close();
+  }
 }
 
 function chooseClass(answer) {
@@ -131,8 +151,9 @@ function chooseClass(answer) {
       } else {
         readlineThing.question("Please enter a valid class: ", function(answer) {
           chooseClass(answer);
+          askGender()
         })
       }
-        }
+    }
 
 game.start();

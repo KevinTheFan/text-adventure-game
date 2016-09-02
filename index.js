@@ -7,9 +7,10 @@ var game = {
       output: process.stdout
     });
 
-    readlineThing.question("What is your name? ", function(answer) {
+      readlineThing.question("What is your name? ", function(answer) {
+      Name(answer);
       console.log("Hi there " + answer + ", welcome to the game!")
-      readlineThing.question("Choose your class: (Mage, Warrior, Thief)", function(answer) {
+      readlineThing.question("Choose your class: (Mage, Warrior, Thief) ", function(answer) {
       chooseClass(answer);
       console.log(Player)
       readlineThing.close();
@@ -55,6 +56,10 @@ var FinalBoss = {
       console.log("Go home noob");
     }
   }
+}
+
+function Name(answer) {
+  Player.name = answer;
 }
 
 function chooseClass(answer) {

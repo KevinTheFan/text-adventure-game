@@ -26,10 +26,10 @@ function initialize() {
           chooseRace(answer);
           console.log(Player)
           readlineThing.close();
-        })
-        })
+          })
         })
       })
+  })
 }
 
 var Player = {
@@ -74,6 +74,9 @@ function Name(answer) {
 
 function chooseGender(answer) {
   Player.gender = answer;
+  if (Player.gender != "Male" || Player.gender != "Female") readlineThing.question("Please enter a valid class: ", function(answer) {
+      chooseGender(answer);
+    })
 }
 
 function chooseRace(answer) {
@@ -125,7 +128,11 @@ function chooseClass(answer) {
           console.log("Eat arrow")
           finalBoss.health = finalBoss.health - 5
         }
-          }
+      } else {
+        readlineThing.question("Please enter a valid class: ", function(answer) {
+          chooseClass(answer);
+        })
+      }
         }
 
 game.start();

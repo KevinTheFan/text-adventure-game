@@ -1,3 +1,5 @@
+console.log("    ---=====---\n    -=Greetings=-\nWelcome to the Game\n    ---=====---")
+
 var readline = require('readline');
 
 var readlineThing = readline.createInterface({
@@ -93,7 +95,7 @@ function chooseGender(answer) {
 
 function chooseRace(answer) {
   Player.race = answer;
-  if (Player.race != "Dwarf" && Player.race != "Human" && Player.race != "Elf'") {
+  if (Player.race != "Dwarf" && Player.race != "Human" && Player.race != "Elf") {
     readlineThing.question("Please enter a valid race: ", function(answer) {
     chooseRace(answer);
   })

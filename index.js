@@ -1,25 +1,35 @@
+var readline = require('readline');
+
+var readlineThing = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 var game = {
   start: function() {
-    var readline = require('readline');
-
-    var readlineThing = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout
-    });
-
-      readlineThing.question("What is your name? ", function(answer) {
-      Name(answer);
-      console.log("Hi there " + answer + ", welcome to the game!")
-      readlineThing.question("Choose your class: (Mage, Warrior, Thief) ", function(answer) {
-      chooseClass(answer);
-      console.log(Player)
-      readlineThing.close();
-    })
-  })
+    initialize();
   },
     restart: function() {
     game.start();
   }
+}
+
+function initialize() {
+  readlineThing.question("What is your name? ", function(answer) {
+    Name(answer);
+      console.log("Hi there " + answer + ", welcome to the game!")
+      readlineThing.question("Choose your class: (Mage, Warrior, Thief) ", function(answer) {
+      chooseClass(answer);
+        readlineThing.question("Choose your gender: (Male, Female) ", function(answer) {
+        chooseGender(answer);
+          readlineThing.question("Choose your race: (Dwarf, Human, Elf) ", function(answer) {
+          chooseRace(answer);
+          console.log(Player)
+          readlineThing.close();
+        })
+        })
+        })
+      })
 }
 
 var Player = {
@@ -60,6 +70,14 @@ var FinalBoss = {
 
 function Name(answer) {
   Player.name = answer;
+}
+
+function chooseGender(answer) {
+  Player.gender = answer;
+}
+
+function chooseRace(answer) {
+  Player.race = answer;
 }
 
 function chooseClass(answer) {

@@ -1,4 +1,4 @@
-console.log("    ---=====---\n    -=Greetings=-\nWelcome to the Game\n    ---=====---")
+console.log("    ---====---\n  Game Starting\n    ---====---")
 
 var readline = require('readline');
 
@@ -42,16 +42,17 @@ function askGender() {
 function askRace() {
   readlineThing.question("Choose your race: (Dwarf, Human, Elf) ", function(answer) {
   chooseRace(answer);
-  console.log(Player)
+  console.log("[Character Customization Complete]")
   readlineThing.close()
+  delayedText();
   })
 }
 
 var Player = {
-  name: "Khan",
-  race: "Human",
-  class: "Warrior",
-  gender: "Male",
+  name: "",
+  race: "",
+  class: "",
+  gender: "",
   health: "20",
   skill: {
     1: null,
@@ -101,8 +102,9 @@ function chooseRace(answer) {
   if (Player.race != "Dwarf" && Player.race != "Human" && Player.race != "Elf") {
     readlineThing.question("Please enter a valid race: ", function(answer) {
     chooseRace(answer);
-    console.log(Player)
+    console.log("[Character Customization Complete]")
     readlineThing.close()
+    delayedText();
   })
 }}
 
@@ -160,3 +162,21 @@ function chooseClass(answer) {
     }
 
 game.start();
+
+var load;
+function delayedText() {
+  console.log("Loading...")
+  load = setTimeout(start, 1000);
+}
+function start() {
+  console.log("    ---=====---\n    -=Greetings=-\nWelcome to the Game\n    ---=====---");
+  p1di1()
+}
+
+var p1di1
+function p1di1() {
+  p1di1 = setTimeout(text001, 1000);
+}
+function text001() {
+  console.log("Welcome to the magical world of Fandemonium")
+}

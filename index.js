@@ -9,6 +9,7 @@ var readlineThing = readline.createInterface({
 
 var game = {
   start: function() {
+    console.log("[Character Customization Begin]")
     initialize();
   },
     restart: function() {
@@ -25,7 +26,7 @@ function initialize() {
 }
 
 function askClass() {
-  readlineThing.question("Choose your class: (Mage, Warrior, Thief) ", function(answer) {
+  readlineThing.question("Choose your class: (Mage, Paladin, Thief) ", function(answer) {
   chooseClass(answer);
   askGender()
   })
@@ -41,6 +42,8 @@ function askGender() {
 function askRace() {
   readlineThing.question("Choose your race: (Dwarf, Human, Elf) ", function(answer) {
   chooseRace(answer);
+  console.log(Player)
+  readlineThing.close()
   })
 }
 
@@ -98,12 +101,10 @@ function chooseRace(answer) {
   if (Player.race != "Dwarf" && Player.race != "Human" && Player.race != "Elf") {
     readlineThing.question("Please enter a valid race: ", function(answer) {
     chooseRace(answer);
-  })
-} else {
     console.log(Player)
-    readlineThing.close();
-  }
-}
+    readlineThing.close()
+  })
+}}
 
 function chooseClass(answer) {
   Player.class = answer;
@@ -124,13 +125,13 @@ function chooseClass(answer) {
         Player.health = Player.health + 8;
       }
     }
-  } else if (Player.class == "Warrior") {
+  } else if (Player.class == "Paladin") {
       Player.skill["1"] = function() {
         console.log("Take this Motherf*cker!")
         finalBoss.health = finalBoss.health - 7;
       }
       Player.skill["2"] = function() {
-        console.log("Stab Stab Stab");
+        console.log("Stab Jab Stab");
         finalBoss.health = finalBoss.health - 12;
       }
       Player.skill["3"] = function() {

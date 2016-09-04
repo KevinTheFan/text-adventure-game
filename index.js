@@ -178,5 +178,32 @@ function p1di1() {
   p1di1 = setTimeout(text001, 1000);
 }
 function text001() {
-  console.log("Welcome to the magical world of Fandemonium")
+  console.log("This is the magical world of Fandemonium...")
+  p1di2()
+}
+
+var p1di2;
+function p1di2() {
+  p1di2 = setTimeout(text002, 2000)
+}
+function text002() {
+  console.log("...in this game you have to defeat evil mobs...")
+  p1di3()
+}
+
+var p1di3;
+function p1di3() {
+  p1di3 = setTimeout(text003, 2000)
+}
+function text003() {
+  console.log("...and defeat the evil forces...")
+  p1di4()
+}
+
+var p1di4;
+function p1di4() {
+  p1di4 = setTimeout(text004, 2000)
+}
+function text004() {
+  console.log("...Good Luck!")
 }

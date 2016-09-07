@@ -54,6 +54,7 @@ var Player = {
   class: "",
   gender: "",
   health: "20",
+  start: "",
   skill: {
     1: null,
     2: null,
@@ -187,7 +188,7 @@ function p1di2() {
   p1di2 = setTimeout(text002, 2000)
 }
 function text002() {
-  console.log("...in this game you have to defeat evil mobs...")
+  console.log("...in this game you have to defeat monsters...")
   p1di3()
 }
 
@@ -196,7 +197,7 @@ function p1di3() {
   p1di3 = setTimeout(text003, 2000)
 }
 function text003() {
-  console.log("...and defeat the evil forces...")
+  console.log("...and destroy the evil forces...")
   p1di4()
 }
 
@@ -206,4 +207,20 @@ function p1di4() {
 }
 function text004() {
   console.log("...Good Luck!")
+  menu();
+}
+
+function menu() {
+  readlineThing.question("Type (Start) to begin ", function(answer) {
+  menuAnswer(answer);
+  readlineThing.close()
+  })
+}
+function menuAnswer(answer) {
+  Player.start = answer;
+  if (Player.start != "Start")
+    readlineThing.question("Type (Start) to begin ", function(answer) {
+    menuAnswer(answer);
+    readlineThing.close()
+    })
 }

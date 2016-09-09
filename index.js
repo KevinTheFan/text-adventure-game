@@ -1,5 +1,3 @@
-console.log("    ---====---\n  Game Starting\n    ---====---")
-
 var readline = require('readline');
 
 var readlineThing = readline.createInterface({
@@ -9,12 +7,34 @@ var readlineThing = readline.createInterface({
 
 var game = {
   start: function() {
-    console.log("[Character Customization Begin]")
-    initialize();
+    beginText()
+    setTimeout(function() {
+      console.log("[Character Customization Begin]")
+      initialize();
+    }, 6000)
   },
     restart: function() {
     game.start();
   }
+}
+
+var beginLoad;
+function beginText() {
+  beginLoad = setTimeout(function() {
+    console.log(" ");
+    setTimeout(function() {
+      console.log("   ---=====---");
+      setTimeout(function() {
+        console.log("  Game Starting");
+        setTimeout(function() {
+          console.log("   ---=====---")
+          setTimeout(function() {
+            console.log(" ")
+          }, 1000)
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  }, 1000)
 }
 
 function initialize() {
@@ -90,6 +110,8 @@ var location = {
     Monsters: enemies.finalBoss
   }
 }
+
+var currentEnemies = null;
 
 var Player = {
   name: "",
@@ -191,13 +213,34 @@ function chooseClass(answer) {
       }
     }
 
+function wait(ms) {
+  var start = new Date().getTime();
+  for (var end = start; end < start + ms;) {
+    end = new Date().getTime();
+  }
+}
+
 game.start();
 
 var load;
 function delayedText() {
   console.log("Loading...")
-  load = setTimeout(start, 1000);
-}
-function start() {
-  console.log(" \n    ---=====---\n   -=Greetings=-\nWelcome to the Game\n    ---=====--- \n");
+  load = setTimeout(function() {
+    console.log(" ");
+    setTimeout(function() {
+      console.log("    ---=====---");
+      setTimeout(function() {
+        console.log("   -=Greetings=-");
+        setTimeout(function() {
+          console.log("Welcome to the Game");
+          setTimeout(function() {
+            console.log("    ---=====---");
+            setTimeout(function() {
+              console.log(" ")
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  }, 1000);
 }

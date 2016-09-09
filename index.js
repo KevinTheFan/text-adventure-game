@@ -5,36 +5,36 @@ var readlineThing = readline.createInterface({
   output: process.stdout
 });
 
+function wait(ms) {
+  var start = new Date().getTime();
+  for (var end = start; end < start + ms;) {
+    end = new Date().getTime();
+  }
+}
+
 var game = {
   start: function() {
-    beginText()
-    setTimeout(function() {
-      console.log("[Character Customization Begin]")
-      initialize();
-    }, 6000)
+    scroll()
+    wait(6000);
+    console.log("[Character Customization Begin]")
+    wait(500);
+    initialize();
   },
     restart: function() {
     game.start();
   }
 }
 
-var beginLoad;
-function beginText() {
-  beginLoad = setTimeout(function() {
-    console.log(" ");
-    setTimeout(function() {
-      console.log("   ---=====---");
-      setTimeout(function() {
-        console.log("  Game Starting");
-        setTimeout(function() {
-          console.log("   ---=====---")
-          setTimeout(function() {
-            console.log(" ")
-          }, 1000)
-        }, 1000)
-      }, 1000)
-    }, 1000)
-  }, 1000)
+function scroll() {
+  console.log(" ");
+  wait(1000);
+  console.log("   ---=====---");
+  wait(1000);
+  console.log("  Game Starting");
+  wait(1000);
+  console.log("   ---=====---");
+  wait(1000);
+  console.log(" ");
 }
 
 function initialize() {
@@ -61,10 +61,18 @@ function askGender() {
 
 function askRace() {
   readlineThing.question("Choose your race: (Dwarf, Human, Elf) ", function(answer) {
-  chooseRace(answer);
-  console.log("[Character Customization Complete]")
-  readlineThing.close()
-  delayedText();
+    var raceCorrect = false;
+    if (answer == "Human" || answer == "Elf" || answer == "Dwarf") {
+      chooseRace(answer);
+      raceCorrect = true;
+    } else {
+      askRace();
+    }
+    if (raceCorrect) {
+      console.log("[Character Customization Complete]")
+      readlineThing.close()
+      delayedText()
+    }
   })
 }
 
@@ -151,14 +159,7 @@ function chooseGender(answer) {
 
 function chooseRace(answer) {
   Player.race = answer;
-  if (Player.race != "Dwarf" && Player.race != "Human" && Player.race != "Elf") {
-    readlineThing.question("Please enter a valid race: ", function(answer) {
-    chooseRace(answer);
-    console.log("[Character Customization Complete]")
-    readlineThing.close()
-    delayedText();
-  })
-}}
+}
 
 function chooseClass(answer) {
   Player.class = answer;
@@ -213,34 +214,25 @@ function chooseClass(answer) {
       }
     }
 
-function wait(ms) {
-  var start = new Date().getTime();
-  for (var end = start; end < start + ms;) {
-    end = new Date().getTime();
-  }
-}
-
 game.start();
 
-var load;
 function delayedText() {
   console.log("Loading...")
-  load = setTimeout(function() {
-    console.log(" ");
-    setTimeout(function() {
-      console.log("    ---=====---");
-      setTimeout(function() {
-        console.log("   -=Greetings=-");
-        setTimeout(function() {
-          console.log("Welcome to the Game");
-          setTimeout(function() {
-            console.log("    ---=====---");
-            setTimeout(function() {
-              console.log(" ")
-            }, 1000);
-          }, 1000);
-        }, 1000);
-      }, 1000);
-    }, 1000);
-  }, 1000);
+  wait(1000)
+  console.log(" ");
+  wait(1000)
+  console.log("    ---=====---");
+  wait(1000)
+  console.log("   -=Greetings=-");
+  wait(2000)
+  console.log("Welcome to the Game");
+  wait(2000)
+  console.log("    ---=====---");
+  wait(1000)
+  console.log(" ")
+  wait(1000)
+}
+
+function battle() {
+
 }

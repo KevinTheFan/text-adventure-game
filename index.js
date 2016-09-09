@@ -48,29 +48,6 @@ function askRace() {
   })
 }
 
-var Player = {
-  name: "",
-  race: "",
-  class: "",
-  gender: "",
-  health: "20",
-  start: "",
-  skill: {
-    1: null,
-    2: null,
-    3: null
-  },
-  eat: function() {
-    if (Player.health == 19) {
-      health = 20;
-    } else if (Player.health == 20) {
-      console.log("You are on full health. Stop eating.")
-    } else {
-      health = health + 2
-    }
-  }
-}
-
 var enemies = {
   finalBoss: {
     name: "Alan the Terrible",
@@ -103,12 +80,37 @@ var enemies = {
 
 var location = {
   town: {
+    name: "Naesak",
     NPC: [],
     Monsters: null
   },
   woods: {
+    name: "Nivia Forest",
     NPC: [],
     Monsters: enemies.finalBoss
+  }
+}
+
+var Player = {
+  name: "",
+  race: "",
+  class: "",
+  gender: "",
+  health: "20",
+  currentLocation : location.town,
+  skill: {
+    1: null,
+    2: null,
+    3: null
+  },
+  eat: function() {
+    if (Player.health == 19) {
+      health = 20;
+    } else if (Player.health == 20) {
+      console.log("You are on full health. Stop eating.")
+    } else {
+      health = health + 2
+    }
   }
 }
 
@@ -197,5 +199,5 @@ function delayedText() {
   load = setTimeout(start, 1000);
 }
 function start() {
-  console.log("    ---=====---\n   -=Greetings=-\nWelcome to the Game\n    ---=====---");
+  console.log(" \n    ---=====---\n   -=Greetings=-\nWelcome to the Game\n    ---=====--- \n");
 }

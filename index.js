@@ -17,17 +17,6 @@ var game = {
   }
 }
 
-var location = {
-  town: {
-    NPC: [],
-    Monsters: null
-  },
-  woods: {
-    NPC: [],
-    Monsters: finalBoss
-  }
-}
-
 function initialize() {
   readlineThing.question("What is your name? ", function(answer) {
     Name(answer);
@@ -82,17 +71,44 @@ var Player = {
   }
 }
 
-var finalBoss = {
-  name: "Alan the Terrible",
-  health: 100,
-  skill: {
-    attack: function() {
-      console.log("Get rekt scrub, mlg 360 no scope");
-      Player.health = Player.health - 10;
-    },
-    taunt: function() {
-      console.log("Go home noob");
+var enemies = {
+  finalBoss: {
+    name: "Alan the Terrible",
+    health: 100,
+    skill: {
+      attack: function() {
+        console.log("Get rekt scrub, mlg 360 no scope");
+        Player.health = Player.health - 10;
+        },
+        taunt: function() {
+          console.log("Go home noob");
+        }
+      }
+  },
+  goblin: {
+    name: "Crimp",
+    health: 10,
+    skill: {
+      attack: function() {
+        console.log("Poke")
+        Player.health = Player.health - 5;
+      },
+      goblinFood: function() {
+        console.log("Gotta have my munchies");
+        enemies.goblin.health = enemies.goblin.health + 2;
+      }
     }
+  }
+}
+
+var location = {
+  town: {
+    NPC: [],
+    Monsters: null
+  },
+  woods: {
+    NPC: [],
+    Monsters: enemies.finalBoss
   }
 }
 
@@ -181,6 +197,5 @@ function delayedText() {
   load = setTimeout(start, 1000);
 }
 function start() {
-  console.log("    ---=====---\n    -=Greetings=-\nWelcome to the Game\n    ---=====---");
-  p1di1()
+  console.log("    ---=====---\n   -=Greetings=-\nWelcome to the Game\n    ---=====---");
 }

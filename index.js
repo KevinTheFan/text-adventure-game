@@ -15,7 +15,7 @@ function wait(ms) {
 var game = {
   start: function() {
     scroll()
-    wait(6000);
+    wait(5000);
     console.log("[Character Customization Begin]")
     wait(500);
     initialize();
@@ -98,7 +98,7 @@ var enemies = {
         console.log("Poke")
         Player.health = Player.health - 5;
       },
-      goblinFood: function() {
+      goblinEat: function() {
         console.log("Gotta have my munchies");
         enemies.goblin.health = enemies.goblin.health + 2;
       }
@@ -108,7 +108,7 @@ var enemies = {
 
 var location = {
   town: {
-    name: "Naesak",
+    name: "Armondale",
     NPC: [],
     Monsters: null
   },
@@ -177,7 +177,7 @@ function chooseClass(answer) {
       if (Player.health > 10) {
         Player.health = 20;
       } else {
-        Player.health = Player.health + 8;
+        Player.health = Player.health + 9;
       }
     }
   } else if (Player.class == "Paladin") {
@@ -224,9 +224,9 @@ function delayedText() {
   console.log("    ---=====---");
   wait(1000)
   console.log("   -=Greetings=-");
-  wait(2000)
+  wait(1000)
   console.log("Welcome to the Game");
-  wait(2000)
+  wait(1000)
   console.log("    ---=====---");
   wait(1000)
   console.log(" ")
@@ -234,5 +234,5 @@ function delayedText() {
 }
 
 function battle() {
-
+  console.log("You have encountered an enemy!")
 }

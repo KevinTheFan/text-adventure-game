@@ -12,6 +12,10 @@ function wait(ms) {
   }
 }
 
+function rollDice() {
+    return Math.floor(Math.random() * 6 + 1);
+}
+
 var game = {
   start: function() {
     scroll()
@@ -70,7 +74,6 @@ function askRace() {
     }
     if (raceCorrect) {
       console.log("[Character Customization Complete]")
-      readlineThing.close()
       delayedText()
     }
   })
@@ -119,7 +122,7 @@ var location = {
   }
 }
 
-var currentEnemies = null;
+var currentEnemy = null;
 
 var Player = {
   name: "",
@@ -166,11 +169,11 @@ function chooseClass(answer) {
   if (Player.class == "Mage") {
     Player.skill["1"] = function() {
       console.log("Take this Motherf*cker!")
-      finalBoss.health = finalBoss.health - 10;
+      currentEnemy.health = currentEnemy.health - 10;
     }
     Player.skill["2"] = function() {
       console.log("Eat fire");
-      finalBoss.health = finalBoss.health - 20;
+      currentEnemy.health = currentEnemy.health - 20;
     }
     Player.skill["3"] = function() {
       console.log("I haz more health")
@@ -181,30 +184,30 @@ function chooseClass(answer) {
       }
     }
   } else if (Player.class == "Paladin") {
-      Player.skill["1"] = function() {
+      Player.skill["1"]d = function() {
         console.log("Take this Motherf*cker!")
-        finalBoss.health = finalBoss.health - 7;
+        currentEnemy.health = currentEnemy.health - 7;
       }
       Player.skill["2"] = function() {
         console.log("Stab Jab Stab");
-        finalBoss.health = finalBoss.health - 12;
+        currentEnemy.health = currentEnemy.health - 12;
       }
       Player.skill["3"] = function() {
         console.log("Boom!")
-        finalBoss.health = finalBoss.health - 20
+        currentEnemy.health = currentEnemy.health - 20
       }
     } else if (Player.class == "Thief") {
         Player.skill["1"] = function() {
           console.log("Take this Motherf*cker!")
-          finalBoss.health = finalBoss.health - 7;
+          currentEnemy.health = currentEnemy.health - 7;
         }
         Player.skill["2"] = function() {
           console.log("Shanking Intensifies");
-          finalBoss.health = finalBoss.health - 9;
+          currentEnemy.health = currentEnemy.health - 9;
         }
         Player.skill["3"] = function() {
           console.log("Eat arrow")
-          finalBoss.health = finalBoss.health - 5
+          currentEnemy.health = currentEnemy.health - 15;
         }
       } else {
         readlineThing.question("Please enter a valid class: ", function(answer) {
@@ -231,8 +234,67 @@ function delayedText() {
   wait(1000)
   console.log(" ")
   wait(1000)
+  battle()
 }
 
 function battle() {
-  console.log("You have encountered an enemy!")
+    console.log("You have encountered an enemy")
+    wait(1000)
+    readlineThing.question("Would you like to run or fight? (Run, Fight) ", function(answer) {
+          if (answer == "Run") {
+        console.log("You run away!");
+      } else if (answer == "Fight") {
+        console.log("You decide to fight!");
+        if (Player.class == "Mage") {
+          readlineThing.question("Choose an attack: (Bash, Fireball, Heal) ", function(answer) {
+            if (answer == "Bash") {
+              playerSkill2()
+              if (Player.health == 0) {
+                console.log("You are dead!")
+              } else if (currentEnemy.health == 0) {
+                console.log("Enemy defeated!")
+              } else {
+              }
+            } else if (answer == "Fireball") {
+              playerSkill1()
+            } else if (answer == "Heal") {
+              playerSkill3()
+            } else {
+              readlineThing.question("Please enter a valid action: ", function(answer) {
+
+              })
+            }
+        })} else if (Player.class == "Paladin") {
+          readlineThing.question("Choose an attack: (Bash, Stab, Bombing) ", function(answer) {
+            if (answer == "Bash") {
+              playerSkill2()
+            } else if (answer == "Stab") {
+              playerSkill1()
+            } else if (answer == "Bombing") {
+              playerSkill3()
+            } else {
+              readlineThing.question("Please enter a valid action: ", function(answer) {
+
+              }) 
+            }
+        })} else if (Player.class == "Thief") {
+          readlineThing.question("Choose an attack: (Bash, Shank, Shoot) ", function(answer) {
+            if (answer == "Bash") {
+              playerSkill2()
+            } else if (answer == "Shank") {
+              playerSkill1()
+            } else if (answer == "Shoot") {
+              playerSkill3()
+            } else {
+              readlineThing.question("Please enter a valid action: ",function(answer) {
+                
+              })
+            }
+        })
+      } else {
+        readlineThing.question("Please enter a valid action: ", function(answer) {
+        })
+      }
+    }
+    });
 }
